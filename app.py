@@ -40,4 +40,24 @@ def mkResultAPI():
 
 def getBoxAndItem(data):
     packer = Packer()
-    
+    box_data = data["box"][0]
+    box = Bin(
+        partno=box_data['name'],
+        WHD=box_data['WHD'],
+        max_weight=box_data['weight'],
+        corner=box_data['corner'],
+        put_type=box_data['openTop'][0]
+    )
+
+    packer.addBin(box)
+    item_data = data["item"]
+    color_dict = {
+        1: 'red',
+        2: 'yellow',
+        3: 'blue',
+        4: 'green',
+        5:'purple',
+        6: 'brown',
+        7: 'orange'
+    }
+    for i in item_data
