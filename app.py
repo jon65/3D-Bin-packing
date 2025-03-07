@@ -71,7 +71,7 @@ def mkResultAPI():
                 
                 for item in box.unfitted_items:
                     unfitItem.append(makeDictItem(item))
-
+                    
                 # for unfitem in box
                 # make response
                 res["Success"] = True
