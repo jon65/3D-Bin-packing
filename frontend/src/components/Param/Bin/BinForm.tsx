@@ -33,7 +33,7 @@ export const BinForm: FC<BinProps> = ({ name, depth, width, length, noBins, put_
   }
 
   return (
-    <div className="items-center min-h-screen mb-4">
+    <div className="items-center mb-4">
       <div>
         <label htmlFor="name" className="block text-gray-700 font-medium">
           Bin Name

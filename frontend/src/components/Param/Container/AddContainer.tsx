@@ -3,7 +3,7 @@ import { useParamContext } from "../ParameterManager";
 
 const AddContainer = () => {
   // State to hold the containers
-  const { containers, addContainer } = useParamContext();
+  const { addContainer } = useParamContext();
 
   return (
     <>

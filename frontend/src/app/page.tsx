@@ -4,8 +4,8 @@ import { Dropdown } from "@/components/Dropdown";
 // pages/index.tsx
 import { useState } from "react";  // Import useState from React
 import { ParameterInputForm } from "@/components/ParameterInputForm";
-import { Bin } from "@/components/Param/Bin/BinForm";
 import { ParamManager } from "@/components/Param/ParamManager";
+import { ChartLayout } from "@/components/chart/ChartLayout";
 
 
 
@@ -23,13 +23,19 @@ export default function Home() {
     e.preventDefault();
 
   };
-  
+  // Example boxes
+
+
   return (
-    <div className="p-6">
-      <ParamManager />
-        <div>
-          dsa
-        </div>
-      </div>
+<div className="p-6 grid grid-cols-5 gap-6">
+  <div className="col-span-2">
+    <ParamManager />
+  </div>
+  <div className="col-span-3">
+        <ChartLayout />
+  </div>
+</div>
+
+
   );
 }
