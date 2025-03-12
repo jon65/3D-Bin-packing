@@ -4,10 +4,25 @@ export interface Bin {
   depth: number;
   width: number;
   length: number;
-  noBins: number;
+    noBins: number;
+    maxWeight: number;
+    put_type: boolean;
+    corner: number;
+}
+enum ItemType {
+  CUBE = "cube",
+  CYLINDER = "cylnder"
 }
 
 export interface Container {
   name: string;
-  capacity: string;
+  weight: number;
+  typeof: ItemType;
+    depth: number;
+    width: number;
+    length: number;
+    noContainers: number;
+    level: number;
+    loadbear: number;
+    updown: boolean;
 }

@@ -12,6 +12,7 @@ interface ParamContext {
   updateBin: (index: number, updatedBin: Bin) => void;
   updateContainer: (index: number, updatedContainer: Container) => void;
   submitParams: () => void;
+  deleteBin: (index: number) => void;
 }
 interface Props {
   children: React.ReactNode;
@@ -27,7 +28,7 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
 
   // Add a new bin
   const addBin = () => {
-    setBins([...bins, { name: '', depth: 0, width: 0, length: 0, noBins: 0 }]);
+    setBins([...bins, { name: '', depth: 0, width: 0, length: 0, noBins: 0, maxWeight: 0, corner: 0, put_type: false}]);
   };
 
   // Update a bin at a specific index
@@ -36,6 +37,11 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
     newBins[index] = updatedBin;
     setBins(newBins);
   };
+
+  const deleteBin = (index: number) => { 
+    const updatedBins = bins.filter((_, binIndex) => (binIndex !== index));
+    setBins(updatedBins);
+  }
 
   // Add a new container
   const addContainer = () => {
@@ -65,6 +71,7 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
         updateBin,
         updateContainer,
         submitParams,
+        deleteBin
       }}
     >
       {children} {/* Render children */}

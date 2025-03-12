@@ -1,5 +1,15 @@
 import { useState } from "react";
 
+interface ContainerProp {
+  name: string;
+  depth: number;
+  width: number;
+  length: number;
+  noBins: number;
+  onChange: (index: number, updatedBin: Bin) => void;
+  onDelete: (index: number) => void;
+  index: number;
+}
 const Container = () => {
   
 

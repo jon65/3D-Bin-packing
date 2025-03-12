@@ -4,7 +4,7 @@ import { Dropdown } from "@/components/Dropdown";
 // pages/index.tsx
 import { useState } from "react";  // Import useState from React
 import { ParameterInputForm } from "@/components/ParameterInputForm";
-import { Bin } from "@/components/Param/BinForm";
+import { Bin } from "@/components/Param/Bin/BinForm";
 import { ParamManager } from "@/components/Param/ParamManager";
 
 

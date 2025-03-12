@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Bin } from "./type";
+import { Bin } from "../type";
 // Define Bin type interface (for reference)
 
 
@@ -9,21 +9,28 @@ interface BinProps {
   width: number;
   length: number;
   noBins: number;
+  put_type: boolean;
+  corner: number;
+  maxWeight: number;
   onChange: (index: number, updatedBin: Bin) => void;
   onDelete: (index: number) => void;
   index: number;
 }
 
-export const BinForm: FC<BinProps> = ({ name, depth, width, length, noBins, onChange, index }) => {
+export const BinForm: FC<BinProps> = ({ name, depth, width, length, noBins, put_type, corner, onChange, index, maxWeight, onDelete }) => {
   // Handle input changes for each field
   const handleInputChange = (field: keyof Bin, value: string) => {
     // Convert value to the appropriate type (e.g., number for depth, width, length, and noBins)
     const updatedValue = field === 'name' ? value : parseFloat(value);
-    const updatedBin = { name, depth, width, length, noBins, [field]: updatedValue };
+    const updatedBin = { name, depth, width, length, noBins, put_type, corner, maxWeight, [field]: updatedValue };
 
     // Call the onChange function passed via props to update the parent state
     onChange(index, updatedBin);
   };
+
+  const handleDelete = () => { 
+    onDelete(index);
+  }
 
   return (
     <div className="items-center min-h-screen mb-4">
@@ -100,6 +107,9 @@ export const BinForm: FC<BinProps> = ({ name, depth, width, length, noBins, onCh
           placeholder="Enter number of bins"
         />
       </div>
+      <button onClick={ handleDelete} className="mt-4 p-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+      Delete Bin
+      </button>
     </div>
   );
 };

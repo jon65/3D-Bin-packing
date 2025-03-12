@@ -1,11 +1,11 @@
 
-import { useParamContext } from './ParameterManager'; // Adjust the path
+import { useParamContext } from '../ParameterManager'; // Adjust the path
 import { useState } from 'react';
 
 
 
 export const AddBin = () => { 
-  const { bins, addBin, updateBin } = useParamContext();
+  const { bins, addBin } = useParamContext();
 
     return (
       <>
