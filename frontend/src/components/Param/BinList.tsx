@@ -1,4 +1,4 @@
-import { Bin } from "./Bin";
+import { BinForm } from "./BinForm";
 import { useParamContext } from "./ParameterManager";
 
 
@@ -8,9 +8,7 @@ export const BinList = () => {
     return (
         <div>
             {bins.map((bin, index) => (
-                <div key={ index}>
-                    <Bin onChange={ updateBin} name={bin.name} length={0} width={6} depth={3} noBins={ 2} />
-                </div>
+                <BinForm key={index} onChange={updateBin} name={bin.name} length={bin.length} width={bin.width} depth={bin.depth} noBins={bin.noBins} index={index} onDelete={ } />
             ))}
         </div>
     );

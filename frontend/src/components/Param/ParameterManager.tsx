@@ -1,15 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
+import { Bin, Container } from './type';
 
 // Define types for bin and container data
-interface Bin {
-  name: string;
-  capacity: string;
-}
-
-interface Container {
-  name: string;
-  capacity: string;
-}
 
 // Define the type for the context's value
 interface ParamContext {
@@ -35,7 +27,7 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
 
   // Add a new bin
   const addBin = () => {
-    setBins([...bins, { name: '', capacity: '' }]);
+    setBins([...bins, { name: '', depth: 0, width: 0, length: 0, noBins: 0 }]);
   };
 
   // Update a bin at a specific index
