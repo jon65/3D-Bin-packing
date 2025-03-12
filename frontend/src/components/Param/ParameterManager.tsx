@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Bin, Container } from './type';
+import { Bin, Container, ItemType } from './type';
 
 // Define types for bin and container data
 
@@ -45,7 +45,17 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
 
   // Add a new container
   const addContainer = () => {
-    setContainers([...containers, { name: '', capacity: '' }]);
+    setContainers([...containers, {
+      name: '', weight: 0,
+      typeof: ItemType.CUBE,
+      depth: 0,
+      width: 0,
+      length: 0,
+      noContainers: 0,
+      level: 0,
+      loadbear: 0,
+      updown: false
+    }]);
   };
 
   // Update a container at a specific index

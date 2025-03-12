@@ -9,7 +9,7 @@ export interface Bin {
     put_type: boolean;
     corner: number;
 }
-enum ItemType {
+export enum ItemType {
   CUBE = "cube",
   CYLINDER = "cylnder"
 }
@@ -17,7 +17,7 @@ enum ItemType {
 export interface Container {
   name: string;
   weight: number;
-  typeof: ItemType;
+  type: ItemType;
     depth: number;
     width: number;
     length: number;
