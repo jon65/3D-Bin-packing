@@ -1,3 +1,4 @@
+'use client'
 import React, { createContext, useContext, useState } from 'react';
 import { Bin, Container, ItemType } from './type';
 
@@ -65,11 +66,37 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
     setContainers(newContainers);
   };
 
-  // Handle form submission (bins and containers data)
-  const submitParams = () => {
-    console.log('Submitting params:', { bins, containers });
-    // Send data to an API or handle form submission here
-  };
+// Handle form submission (bins and containers data)
+const submitParams = async () => {
+  console.log('Submitting params:', { bins, containers });
+
+  try {
+    // Send data to an API (assuming you have an API route at /api/submit)
+    const response = await fetch('http://127.0.0.1:5050/calPacking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bins,
+        containers,
+      }),
+    });
+
+    // Handle the response from the API
+    if (!response.ok) {
+      throw new Error('Failed to submit data');
+    }
+
+    const result = await response.json();
+    console.log('Submission successful:', result);
+    // You can handle the result here, such as showing a success message
+  } catch (error) {
+    console.error('Error submitting data:', error);
+    // Optionally handle the error (e.g., show an error message to the user)
+  }
+};
+
 
   return (
     <ParamContext.Provider
