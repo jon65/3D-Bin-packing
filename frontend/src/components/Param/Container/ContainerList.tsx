@@ -15,7 +15,7 @@ const ContainerList = () => {
             key={index}
             className="border p-4 mb-2 rounded-md bg-gray-100"
           >
-            {container}
+            {container.depth}
           </div>
         ))}
       </div>

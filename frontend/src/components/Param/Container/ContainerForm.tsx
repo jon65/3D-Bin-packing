@@ -41,8 +41,9 @@ const ContainerForm: FC<ContainerProp> = ({ name, depth, width, length, weight, 
             type="number"
             min="1"
             id="bins"
-            name="bins"
-            onChange={handleInputChange} // Attach onChange handler here
+          name="bins"
+          value={ noContainers}
+            onChange={(e) => handleInputChange('noContainers', e.target.value)} // Attach onChange handler here
             className="w-full mt-2 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter number of bins"
           />

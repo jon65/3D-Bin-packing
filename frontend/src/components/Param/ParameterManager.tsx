@@ -47,7 +47,7 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
   const addContainer = () => {
     setContainers([...containers, {
       name: '', weight: 0,
-      typeof: ItemType.CUBE,
+      type: ItemType.CUBE,
       depth: 0,
       width: 0,
       length: 0,
