@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { mapDTO } from '../utils/mapper';
 import { Box } from '../chart/type';
 import { BoxDTO, ItemDTO, UploadParamDTO } from '../utils/uploadParamDTO';
+import { NextApiResponse } from 'next';
 // Define types for bin and container data
 
 // Define the type for the context's value
@@ -111,7 +112,7 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
 
 
 
-  const response = await fetch("http://example.com/api1", {
+  const response = await fetch("http://192.168.0.103:3001", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // Ensure you're sending JSON data
@@ -123,12 +124,9 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
         throw new Error("First API failed");
       }
 
-      // After the first API call succeeds, call the second API
-      const secondResponse = await fetch("http://example.com/api2", { method: "POST" });
-
-      if (!secondResponse.ok) {
-        throw new Error("Second API failed");
-      }
+      const data:Response  = await response.json();
+      //map data back to types
+      
 
       // If both APIs succeed, update state
     } catch (error) {

@@ -2,11 +2,12 @@ import Image from "next/image";
 import { Dropdown } from "@/components/Dropdown";
 // pages/index.tsx
 import { ParameterInputForm } from "@/components/ParameterInputForm";
+import { ParamManager } from "@/components/Param/ParamManager";
 import { ChartLayout } from "@/components/chart/ChartLayout";
 import { ParamProvider } from "@/components/Param/ParameterManager";
-import { ParamManager } from "@/components/Param/ParamManager";
 
 export default function Home() {
+
 
 
   return (
