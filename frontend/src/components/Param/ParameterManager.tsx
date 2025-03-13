@@ -1,7 +1,10 @@
 'use client'
 import React, { createContext, useContext, useState } from 'react';
 import { Bin, Container, ItemType } from './type';
-
+import { useQuery } from '@tanstack/react-query';
+import { mapDTO } from '../utils/mapper';
+import { Box } from '../chart/type';
+import { BoxDTO, ItemDTO, UploadParamDTO } from '../utils/uploadParamDTO';
 // Define types for bin and container data
 
 // Define the type for the context's value
@@ -15,6 +18,7 @@ interface ParamContext {
   submitParams: () => void;
   deleteBin: (index: number) => void;
 }
+
 interface Props {
   children: React.ReactNode;
 }
@@ -67,36 +71,69 @@ export const ParamProvider: React.FC<Props>  = ({ children }) => {
   };
 
 // Handle form submission (bins and containers data)
-const submitParams = async () => {
-  console.log('Submitting params:', { bins, containers });
+  const submitParams = async () => {
+    try {
+   // Map bins and containers to UploadParamDTO
+    const uploadParamDTOfromBinContainer: UploadParamDTO = mapDTO<any, UploadParamDTO>({
+      from: {
+        boxes: bins,  // Assuming bins are of type Box[]
+        containers: containers,  // Assuming containers are of type Item[]
+      }
+    }).transform((from) => {
+      // Map the `boxes` (bins) and `containers` (items) to the required UploadParamDTO format
+      const box:BoxDTO[] = from.boxes.map((bin: Bin) => ({
+        name: bin.name,
+        WHD: [bin.width, bin.length, bin.depth] as [number, number, number],  // Ensure it maps to the correct tuple format
+        weight: bin.maxWeight,
+        coner: bin.corner,
+        openTop: bin.put_type == true ? [0] : [1] ,
+      }));
 
-  try {
-    // Send data to an API (assuming you have an API route at /api/submit)
-    const response = await fetch('http://127.0.0.1:5050/calPacking', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        bins,
-        containers,
-      }),
+  const item: ItemDTO[] = from.containers.map((container: Container, index: number) => ({
+    name: container.name,
+    type: container.type == ItemType.CUBE ? 1 : 0,
+    WHD: [container.width, container.length, container.depth] as [number, number, number], // Map to a tuple for width, height, depth
+    weight: container.weight,
+    count: container.noContainers,
+    level: container.level,
+    loadbear: container.loadbear,
+    updown: container.updown,
+    color: index,
+  }));
+
+      const res: UploadParamDTO = {
+        box,
+        item,
+        binding: [], // assuming binding remains an empty array, adjust if needed
+      };
+      return res;
     });
 
-    // Handle the response from the API
-    if (!response.ok) {
-      throw new Error('Failed to submit data');
-    }
 
-    const result = await response.json();
-    console.log('Submission successful:', result);
-    // You can handle the result here, such as showing a success message
-  } catch (error) {
-    console.error('Error submitting data:', error);
-    // Optionally handle the error (e.g., show an error message to the user)
-  }
-};
 
+  const response = await fetch("http://example.com/api1", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Ensure you're sending JSON data
+    },
+    body: JSON.stringify(uploadParamDTOfromBinContainer), // Convert your request body to JSON
+  });
+
+      if (!response.ok) {
+        throw new Error("First API failed");
+      }
+
+      // After the first API call succeeds, call the second API
+      const secondResponse = await fetch("http://example.com/api2", { method: "POST" });
+
+      if (!secondResponse.ok) {
+        throw new Error("Second API failed");
+      }
+
+      // If both APIs succeed, update state
+    } catch (error) {
+    } 
+  };
 
   return (
     <ParamContext.Provider
