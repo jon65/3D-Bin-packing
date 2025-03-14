@@ -1,21 +1,28 @@
 import { Box } from "@/components/types/PackingType";
 import { Bin, Container } from "@/components/types/ParamType";
+import { UploadParamDTO } from "@/components/utils/uploadParamDTO";
 
-
-// Define the return types for three separate values
 interface UploadParamResponse {
   box?: Bin;
   fitItems: Container[];
   unFitItems?: Container[];
 }
 
-export const uploadParam = async (): Promise<UploadParamResponse> => {
+// Altered uploadParam to send data (POST request)
+export const uploadParam = async (params: UploadParamDTO): Promise<UploadParamResponse> => {
   try {
-    const response = await fetch("http://example.com/api"); // Replace with your API endpoint
+    const response = await fetch("http://example.com/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Ensure you're sending JSON data
+      },
+      body: JSON.stringify(params), // Pass the parameters you want to upload in the request body
+    });
+
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error("Failed to upload data");
     }
 
     // Map the response data into fitItems and unFitItems
@@ -48,6 +55,6 @@ export const uploadParam = async (): Promise<UploadParamResponse> => {
 
   } catch (error) {
     console.error("Error:", error);
-    throw new Error("Error in fetching data");
+    throw new Error("Error in uploading data");
   }
 };
