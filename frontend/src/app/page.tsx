@@ -2,6 +2,10 @@ import { FC } from "react";
 import { ParamManager } from "@/components/Param/ParamManager";
 import { ChartLayout } from "@/components/chart/ChartLayout";
 import { ParamProvider } from "@/components/contexts/ParamContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+
+const queryClient = new QueryClient();
 
 export default function Home() {
   // Function to handle the submit action
@@ -21,6 +25,7 @@ export default function Home() {
 
   return (
     <div className="p-6 grid grid-cols-5 gap-6">
+      <QueryClientProvider client={ queryClient}>
       <ParamProvider>
         <div className="col-span-2">
           {/* Pass the handleFormSubmit function to ParamManager */}
@@ -32,6 +37,7 @@ export default function Home() {
           <ChartLayout />
         </div>
       </ParamProvider>
+      </QueryClientProvider>
     </div>
   );
 }

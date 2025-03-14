@@ -7,7 +7,8 @@ export interface Bin {
     noBins: number;
     maxWeight: number;
     put_type: boolean;
-    corner: number;
+  corner: number;
+  gravity?: number;
 }
 export enum ItemType {
   CUBE = "cube",
