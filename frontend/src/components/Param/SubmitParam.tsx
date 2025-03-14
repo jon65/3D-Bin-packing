@@ -1,16 +1,17 @@
 
-import { useParamContext } from './ParameterManager';
 
 
 
-export const SubmitParam = () => { 
-  const {  submitParams } = useParamContext();
+interface SubmitParamProps {
+  onSubmit: (params: any) => void; // Callback function passed from ParamManager
+}
 
+export const SubmitParam : React.FC<SubmitParamProps> = ({ onSubmit })=> { 
     return (
       <>
       
         <button
-        onClick={submitParams}
+        onClick={onSubmit}
         className="mb-4 p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
         Submit Parameters

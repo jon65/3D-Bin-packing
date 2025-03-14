@@ -1,27 +1,37 @@
-import Image from "next/image";
-import { Dropdown } from "@/components/Dropdown";
-// pages/index.tsx
-import { ParameterInputForm } from "@/components/ParameterInputForm";
+import { FC } from "react";
 import { ParamManager } from "@/components/Param/ParamManager";
 import { ChartLayout } from "@/components/chart/ChartLayout";
-import { ParamProvider } from "@/components/Param/ParameterManager";
+import { ParamProvider } from "@/components/contexts/ParamContext";
 
 export default function Home() {
+  // Function to handle the submit action
+  const handleFormSubmit = (params: any) => {
+    console.log("Form Submitted with params:", params);
 
+    // Send the params directly to the ChartLayout without using state
+    // This will pass the data to the chart visualization component
+    renderChart(params);
+  };
 
+  // Function to render the chart with submitted data
+  const renderChart = (data: any) => {
+    // Here you can use the data to update the visualization
+    console.log("Rendering chart with data:", data);
+  };
 
   return (
     <div className="p-6 grid grid-cols-5 gap-6">
       <ParamProvider>
-  <div className="col-span-2">
-    <ParamManager />
-  </div>
-  <div className="col-span-3">
-        <ChartLayout />
-  </div>
+        <div className="col-span-2">
+          {/* Pass the handleFormSubmit function to ParamManager */}
+          <ParamManager onSubmit={handleFormSubmit} />
+        </div>
+
+        <div className="col-span-3">
+          {/* ChartLayout will now directly receive the data through renderChart */}
+          <ChartLayout />
+        </div>
       </ParamProvider>
-</div>
-
-
+    </div>
   );
 }

@@ -1,5 +1,5 @@
+import { useParamContext } from "@/components/contexts/ParamContext";
 
-import { useParamContext } from '../ParameterManager'; // Adjust the path
 
 
 

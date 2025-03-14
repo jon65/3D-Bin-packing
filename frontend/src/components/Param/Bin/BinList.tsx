@@ -1,5 +1,5 @@
+import { useParamContext } from "@/components/contexts/ParamContext";
 import { BinForm } from "./BinForm";
-import { useParamContext } from "../ParameterManager";
 
 
 export const BinList = () => {

@@ -1,15 +1,19 @@
 'use client'
 import { FC, } from "react";
 import { AddBin } from "./Bin/AddBin";
-import { ParamProvider } from "./ParameterManager";
-import { useParamContext } from './ParameterManager'; // Adjust the path
 import { BinList } from "./Bin/BinList";
 import AddContainer from "./Container/AddContainer";
 import ContainerList from "./Container/ContainerList";
 import { SubmitParam } from "./SubmitParam";
+import { ParamProvider } from "../contexts/ParamContext";
 
 
-export const ParamManager = () => { 
+// Define the type for the onSubmit prop, which will be passed down to SubmitParam
+interface ParamManagerProps {
+  onSubmit: (params: any) => void; // The callback function to be triggered on form submit
+}
+
+export const ParamManager: FC<ParamManagerProps> = ({ onSubmit}) => { 
 
 
     return (
@@ -20,7 +24,7 @@ export const ParamManager = () => {
             <div>
             <AddContainer />
             </div>
-        <SubmitParam />
+            <SubmitParam onSubmit={ onSubmit} />
         </ParamProvider>
     );
 }

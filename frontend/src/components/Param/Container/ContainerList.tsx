@@ -1,4 +1,4 @@
-import { useParamContext } from "../ParameterManager";
+import { useParamContext } from "@/components/contexts/ParamContext";
 
 const ContainerList = () => {
   // State to hold the containers

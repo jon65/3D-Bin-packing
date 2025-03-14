@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Container, ItemType } from "../type";
+import { Container, ItemType } from "../../types/ParamType";
 
 interface ContainerProp {
   name: string;

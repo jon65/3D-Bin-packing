@@ -1,11 +1,10 @@
 'use client'
 import React, { createContext, useContext, useState } from 'react';
-import { Bin, Container, ItemType } from './type';
 import { useQuery } from '@tanstack/react-query';
 import { mapDTO } from '../utils/mapper';
-import { Box } from '../chart/type';
 import { BoxDTO, ItemDTO, UploadParamDTO } from '../utils/uploadParamDTO';
 import { NextApiResponse } from 'next';
+import { Bin, Container, ItemType } from '../types/ParamType';
 // Define types for bin and container data
 
 // Define the type for the context's value

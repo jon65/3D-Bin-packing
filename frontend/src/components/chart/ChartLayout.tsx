@@ -1,6 +1,6 @@
 'use client'
 import { div } from "three/tsl";
-import { Box } from "./type";
+import { Box } from "../types/PackingType";
 import BoxPackingScene from "./BoxPackingScene";
 
 

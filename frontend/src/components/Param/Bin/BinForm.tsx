@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Bin } from "../type";
+import { Bin } from "../../types/ParamType";
 // Define Bin type interface (for reference)
 
 
